@@ -6,6 +6,7 @@
     <title>Temperature Converter</title>
     
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <div class="container">

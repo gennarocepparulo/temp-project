@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $result = "";
 
 $celsius = $_GET["c"] ?? "";
@@ -15,14 +15,23 @@ if ($celsius !== "" && is_numeric($celsius)) {
         $result = $date . " | " . $result;
     }
 
-    // ✅ SAVE ALWAYS
-    file_put_contents(__DIR__ . "/data.txt", $result . "\n", FILE_APPEND | LOCK_EX);
+    
 
 } else {
     $result = "Please enter a valid number.";
 }
-?>
 
+
+
+if (!isset($_SESSION['results'])) {
+    $_SESSION['results'] = [];
+}
+
+// ✅ SAVE ALWAYS
+array_unshift($_SESSION['results'], $result);
+array_slice($_SESSION['results'], 0,10); // Keep only the last 10 results
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -44,25 +53,16 @@ if ($celsius !== "" && is_numeric($celsius)) {
     <h2>Last 10 Results</h2>
 
     <table>
-    <tr>
-        <th>Obeserved</th>
-        <th>Value</th>
-    </tr>
-
-    <?php
-    $file = __DIR__ . "/data.txt";
-
-    if (file_exists($file)) {
-    $lines = file($file, FILE_IGNORE_NEW_LINES);
-
-    foreach ($lines as $index => $line) {
-        echo "<tr>";
-        echo "<td>" . ($index + 1) . "</td>";
-        echo "<td>" . $line . "</td>";
-        echo "</tr>";
-    }
-    }
-    ?>
+        <tr>
+            <th>Observation</th>
+            <th>Value</th>
+        </tr>
+        <?php foreach ($_SESSION['results'] as $entry): ?>
+        <tr>
+            <td><?php echo $entry; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    
 
 </table>
 </body>
