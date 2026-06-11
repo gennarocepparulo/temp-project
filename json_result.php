@@ -5,19 +5,17 @@ $file = __DIR__ . "/data.json";
 
 // Load data
 $results = [];
+
 if (file_exists($file)) {
     $json = file_get_contents($file);
 
-    $results = json_decode($json, true);
+    if (!empty($json)) {
+        $decoded = json_decode($json, true);
 
-
-if (is_array($decoded)) {
-        $results = $decoded;
+        if (is_array($decoded)) {
+            $results = $decoded;
+        }
     }
-
-    var_dump($json);
-    var_dump(json_decode($json, true));
-
 }
 
 $celsius = $_GET["c"] ?? "";

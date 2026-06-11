@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Converting Temperatures</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="container">
+    <h1>Celsius to Fahrenheit</h1>
+    <p>Insert temperature in Celsius:</p>
+    <input type="number" id="celsius" placeholder="Enter temperature in Celsius" />
+
+  
+  <button id="convert-button" type="button">Convert</button>
+
+    <p id="result"></p>
+ 
+
+<script>
+      const celsiusInput = document.querySelector("#celsius");
+      const convertButton = document.querySelector("#convert-button");
+      const result = document.querySelector("#result");
+
+      let celsiusValues = [];
+      let fahrenheitValues = [];
+
+      convertButton.addEventListener("click", () => {
+        const celsius = parseFloat(celsiusInput.value);
+
+        if (Number.isNaN(celsius)) {
+          result.textContent = "Please enter a valid number.";
+          return;
+        }
+
+        const fahrenheit = (celsius * 9) / 5 + 32;
+
+        celsiusValues.push(celsius);
+        fahrenheitValues.push(fahrenheit);
+
+        result.textContent = `${celsius}°C = ${fahrenheit.toFixed(2)}°F`;
+
+
+        console.log("Celsius values:", celsiusValues);
+        console.log("Fahrenheit values:", fahrenheitValues);
+      
+
+      
+      });
+    </script>
+  </body>
+</html>
