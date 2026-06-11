@@ -59,7 +59,11 @@ array_slice($_SESSION['results'], 0,10); // Keep only the last 10 results
         </tr>
         <?php foreach ($_SESSION['results'] as $entry): ?>
         <tr>
-            <td><?php echo $entry; ?></td>
+            
+        <td><?php echo explode(" | ", $entry)[0]; ?></td>
+
+        <td><?php echo explode(" | ", $entry)[1]; ?></td>
+
         </tr>
         <?php endforeach; ?>
     
