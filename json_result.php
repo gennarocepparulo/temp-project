@@ -2,8 +2,6 @@
 
 $file = __DIR__ . "/data.json";
 
-
-// Load data
 $results = [];
 
 if (file_exists($file)) {
@@ -38,8 +36,7 @@ if ($celsius !== "" && is_numeric($celsius)) {
 
         $results = array_slice($results, 0, 10);// Keep only the last 10 results
 
-        file_put_contents($file, json_encode($results, JSON_PRETTY_PRINT));
-
+        file_put_contents($file, json_encode($results, JSON_PRETTY_PRINT, LOCK_EX ));
         $result = $entry['conversion'];
     }
 
@@ -78,4 +75,4 @@ if ($celsius !== "" && is_numeric($celsius)) {
         <?php endforeach; ?>
     </table>
 </body>
-</html> 
+</html>
