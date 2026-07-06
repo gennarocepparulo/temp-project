@@ -12,7 +12,7 @@ if (Number.isNaN(celsius)) {
   result.textContent = "Please enter a valid number.";
   return;
     }
-
+ 
 const fahrenheit = (celsius * 9) / 5 + 32;
 
 celsiusValues.push(celsius);

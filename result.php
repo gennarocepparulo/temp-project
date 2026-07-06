@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+if (!isset($_SESSION["user"])) {
+    header("Location: registration.html");
+    exit;
+}
+
+
 $result = "";
 
 $celsius = $_GET["c"] ?? "";
@@ -20,7 +27,6 @@ if ($celsius !== "" && is_numeric($celsius)) {
 } else {
     $result = "Please enter a valid number.";
 }
-
 
 
 if (!isset($_SESSION['results'])) {
