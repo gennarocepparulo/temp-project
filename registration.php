@@ -2,8 +2,8 @@
 session_start();
 
 try {
-    $dsn = "mysql:host=localhost;dbname=prova;charset=utf8mb4";
-    $pdo = new PDO($dsn, "temp_user", "temp123");
+    $dsn = "mysql:host=localhost;dbname=gennaro_admin;charset=utf8mb4";
+    $pdo = new PDO($dsn, "gennaro_user", "gennaro123");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Connection failed: " . $e->getMessage());
